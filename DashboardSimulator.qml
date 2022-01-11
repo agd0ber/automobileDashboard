@@ -16,7 +16,7 @@ Item {
         height: 500
         width: 1000
         color: "black"
-        Row {
+        Row {       //Qt Quick
             id: dashboardRow
             spacing: dashboard.width * 0.02
             anchors.centerIn: parent
@@ -29,7 +29,7 @@ Item {
                 direction: Qt.LeftArrow
             }
 
-            CircularGauge{
+            CircularGauge{      // QtQuick.Extras
                 id: rpmMeter
                 width: height //300
                 height: dashboard.height * 0.6 //300
@@ -43,18 +43,12 @@ Item {
 
                 property bool acceleration: false
 
-                value: acceleration ? maximumValue : 0
+                value: engineConfigCPP.speed
                 width: height //300
                 height: dashboard.height * 0.6 //300
                 maximumValue: 180
 
                 style: SpeedometerStyle {}
-
-                Behavior on value {     //Qt Quick
-                    NumberAnimation{
-                        duration: 5000
-                    }
-                }
 
                 Component.onCompleted: forceActiveFocus(); //Qt Quick
             }
@@ -69,22 +63,32 @@ Item {
         }
 
         Keys.onUpPressed: {      //Qt Quick
-            speedometer.acceleration = true
+            engineConfigCPP.accelerate(true);
+            //speedometer.acceleration = true
+        }
+
+        Keys.onDownPressed: {
+            engineConfigCPP.applyBrake(true);
         }
 
         Keys.onReleased: {       //Qt Quick
             if (event.key === Qt.Key_Up) {
-                speedometer.acceleration = false
+              engineConfigCPP.accelerate(false);
+                //  speedometer.acceleration = false
+                event.accepted = true
+            }
+            else if (event.key === Qt.Key_Down) {
+                engineConfigCPP.applyBrake(false);
                 event.accepted = true
             }
         }
 
-        Keys.onLeftPressed: {
+        Keys.onLeftPressed: {   //Qt Quick
             leftIndicator.on = true
             rightIndicator.on = false
         }
 
-        Keys.onRightPressed: {
+        Keys.onRightPressed: {  //Qt Quick
             rightIndicator.on = true
             leftIndicator.on = false
         }
