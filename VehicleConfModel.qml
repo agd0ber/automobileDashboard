@@ -1,62 +1,69 @@
-import QtQuick 2.15
+import QtQuick 2.0
+import QtQml.Models 2.15
 
 ListModel {
-    id: vehicleConfModel
+    id: vehicleConfMod
 
     ListElement {
         name: "engineRPM"
-        displaytext: "Engine RPM"
-        value: 5000
+        displayText: "Engine RPM"
+        value: 3000
+        unit: ""
+    }
+
+    ListElement {
+        name: "driveRatio"
+        displayText: "Final Drive ratio"
+        value: 3.4
         unit: ""
     }
 
     ListElement {
         name: "tyreRow"
-        displaytext: "Tyre diameter"
+        displayText: "Tyre diameter"
         value: 680
         unit: "mm"
     }
 
     ListElement {
         name: "fGear"
-        displaytext: "First gear ratio"
+        displayText: "First gear ratio"
         value: 2.7
         unit: ""
     }
 
     ListElement {
         name: "sGear"
-        displaytext: "Second gear ratio"
+        displayText: "Second gear ratio"
         value: 2.1
         unit: ""
     }
 
     ListElement {
         name: "tGear"
-        displaytext: "Third gear ratio"
+        displayText: "Third gear ratio"
         value: 1.5
         unit: ""
     }
 
     ListElement {
         name: "fourGear"
-        displaytext: "Fourth gear ratio"
+        displayText: "Fourth gear ratio"
         value: 1
         unit: ""
     }
 
     ListElement {
         name: "fiveGear"
-        displaytext: "Fifth gear ratio"
+        displayText: "Fifth gear ratio"
         value: 0.85
         unit: ""
     }
 
     ListElement {
         name: "sixGear"
-        displaytext: "Sixth gear ratio"
+        displayText: "Sixth gear ratio"
         value: 0.6
         unit: ""
     }
-
 }

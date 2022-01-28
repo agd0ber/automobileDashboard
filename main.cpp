@@ -4,6 +4,15 @@
 
 #include "engineconfiguration.h"
 
+class QmlCppBridge : public QObject
+{
+    Q_OBJECT
+public:
+
+    Q_INVOKABLE static void printHello() {
+        qDebug() << "Hello, QML!";
+    }
+};
 
 int main(int argc, char *argv[])
 {
@@ -15,9 +24,10 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
+    EngineConfiguration *confptr = new EngineConfiguration(); //объект свойств, определяемых в модели С++
+
     QQmlApplicationEngine engine;
 
-    EngineConfiguration *confptr = new EngineConfiguration(); //объект свойств, определяемых в модели С++
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -26,9 +36,13 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    engine.rootContext()->setContextProperty("engineConfigCPP", confptr); //связываем указатель на объект свойств и имя свойства в QML
-
     engine.load(url);
+
+    QQmlContext * rootContext = engine.rootContext();
+
+        qmlRegisterType<QmlCppBridge>("QmlCppBridge", 1, 0, "QmlCppBridge");
+
+    rootContext->setContextProperty("engineConfigCPP", confptr); //связываем указатель на объект свойств и имя свойства в QML
 
     return app.exec();
 }

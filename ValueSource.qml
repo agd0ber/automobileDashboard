@@ -3,32 +3,32 @@ import QtQuick 2.15
 Item {
     id: valueSource
 
-    property real speed: speedometer.value
+    property real curGear: engineConfigCPP.curGear
 
     property string gear: {
         var gearValue
 
-        if (speed == 0)
+        if (engineConfigCPP.speed == 0)
         {
             return "P"
         }
-        else if (speed < 30)
+        else if (curGear == 1)
         {
             return "1"
         }
-        else if (speed < 50)
+        else if (curGear == 2)
         {
             return "2"
         }
-        else if (speed < 80)
+        else if (curGear == 3)
         {
             return "3"
         }
-        else if (speed < 120)
+        else if (curGear == 4)
         {
             return "4"
         }
-        else if (speed < 160)
+        else if (curGear == 5)
         {
             return "5"
         }

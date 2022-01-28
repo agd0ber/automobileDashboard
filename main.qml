@@ -5,14 +5,12 @@ import QtQuick.Extras 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 1.4
 
-
 Window { //QtQuick.Window
     id: window
     width: 900
     height: 600
     visible: true
     title: qsTr("Automobile Dashboard")
-
 
 
     Column { //Qt Quick

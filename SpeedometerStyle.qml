@@ -35,8 +35,7 @@ CircularGaugeStyle
                 font.pixelSize: outerRadius * 0.1
                 horizontalAlignment: Text.AlignRight
 
-                readonly property int kphValue : valueSource.speed
-            }
+                readonly property int kphValue : engineConfigCPP.speed            }
 
             Text {
                 id: unitSpeed

@@ -9,6 +9,7 @@ Item {
     scale: direction === Qt.LeftArrow ? 1 : -1
 
     function drawArrow(ctr) {
+//        console.log("hi,paint");
         ctr.beginPath();
         ctr.moveTo(0, height * 0.5)
         ctr.lineTo(0.6 * width, 0)
@@ -41,6 +42,7 @@ Item {
         anchors.fill: parent //полностью заполняет родительский виждет
 
         onPaint: {
+//            console.log("hi,arrow");
             var ctr = getContext("2d")
             ctr.reset()
 

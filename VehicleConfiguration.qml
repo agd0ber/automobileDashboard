@@ -1,5 +1,7 @@
-import QtQuick 2.15
+import QtQuick 2.0
 import QtQuick.Controls 1.4
+import QtQml.Models 2.15
+
 
 Item {
     id: rootComp
@@ -22,21 +24,30 @@ Item {
                 id: repeaterRow
                 spacing: 10
 
-                property string name : ""
-
+                //                property string name: ""
                 Text {
                     id: name
                     anchors.verticalCenter: parent.verticalCenter
                     width: settingPanel.width * 0.4
                     font.pointSize: 15
-                    text: displaytext
+                    text: displayText
                 }
 
                 TextField {
+                    id: valF
                     anchors.verticalCenter: parent.verticalCenter
                     width: settingPanel.width * 0.4
                     font.pointSize: 15
                     text: value
+                    onTextChanged: {
+
+                        for (var i = 0; i < vehicleConfModel.count; i++) {
+
+                            if (vehicleConfModel.get(i).displayText === name.text) {
+                                vehicleConfModel.setProperty(i, "value", parseFloat(text));
+                            }
+                        }
+                    }
                 }
 
                 Text {
@@ -46,60 +57,22 @@ Item {
                     text: unit
                 }
             }
+        }
 
+        Button {
+            id: updateButton
+            text: "Update"
+            width: settingPanel.width * 0.3
+            height: width * 0.4
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: {
+                for (var i = 0; i < vehicleConfModel.count; i++) {
+                    var pName = vehicleConfModel.get(i).name
+                    var pValue = vehicleConfModel.get(i).value
+                    engineConfigCPP.updateEngineProp(pName, pValue)
 
+                }
+            }
         }
     }
 }
-// Не используется, отображение без репитера
-//        SettingField {
-//            id: rpmRow
-//            name: "Maximum RPM"
-//        }
-
-//        SettingField {
-//            id: tyreRow
-//            name: "Type diameter"
-
-//            Text {
-//                id: tyreUnit
-//                anchors.verticalCenter: parent.verticalCenter
-//                width: settingPanel.width * 0.4
-//                font.pointSize: 15
-//                text: "mm"
-//            }
-//        }
-
-
-//        SettingField {
-//            id: fGear
-//            name: "First gear ratio"
-//        }
-
-//        SettingField {
-//            id: sGear
-//            name: "Second gear ratio"
-//        }
-
-//        SettingField {
-//            id: tGear
-//            name: "Third gear ratio"
-//        }
-
-//        SettingField {
-//            id: fourGear
-//            name: "Fourth gear ratio"
-//        }
-
-//        SettingField {
-//            id: fiveGear
-//            name: "Fifth gear ratio"
-//        }
-
-//        SettingField {
-//            id: sixGear
-//            name: "Sixth gear ratio"
-//        }
-//    }
-
-
