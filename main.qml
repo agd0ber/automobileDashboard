@@ -8,7 +8,7 @@ import QtQuick.Controls 1.4
 Window { //QtQuick.Window
     id: window
     width: 900
-    height: 600
+    height: 700
     visible: true
     title: qsTr("Automobile Dashboard")
 
@@ -17,7 +17,7 @@ Window { //QtQuick.Window
         id: leftPanel
         anchors.left: parent.left
         anchors.top: parent. top
-
+        spacing: 10
         width: parent * 0.2
 
         Button { //QtQuick.Controls
@@ -33,6 +33,7 @@ Window { //QtQuick.Window
         Button { //QtQuick.Controls
             id: simButton
             text: "Dashboard Simulation"
+            anchors.bottomMargin: 100
 
             onClicked: {
                 centralPanelLoader.source = "DashboardSimulator.qml"

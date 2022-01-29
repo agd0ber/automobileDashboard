@@ -62,8 +62,8 @@ Item {
         Button {
             id: updateButton
             text: "Update"
-            width: settingPanel.width * 0.3
-            height: width * 0.4
+            width: settingPanel.width * 0.2
+            height: width * 0.3
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
                 for (var i = 0; i < vehicleConfModel.count; i++) {

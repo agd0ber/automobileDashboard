@@ -27,6 +27,7 @@ public:
     Q_INVOKABLE void accelerate(bool acc);
     Q_INVOKABLE void applyBrake(bool breaks);
     Q_INVOKABLE void updateEngineProp (QString param, double value);
+    Q_INVOKABLE double getEngineProperty (QString param);
 
 signals:
 

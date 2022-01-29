@@ -6,7 +6,7 @@ ListModel {
 
     ListElement {
         name: "engineRPM"
-        displayText: "Engine RPM"
+        displayText: "Max Engine RPM"
         value: 3000
         unit: ""
     }
@@ -65,5 +65,15 @@ ListModel {
         displayText: "Sixth gear ratio"
         value: 0.6
         unit: ""
+    }
+
+    function refreshProperties() {
+        for (var i = 0; i < vehicleConfModel.count; i++) {
+            vehicleConfModel.setProperty(i, "value", engineConfigCPP.getEngineProperty(vehicleConfModel.get(i).name))
+
+        }
+    }
+    Component.onCompleted: {
+        refreshProperties()
     }
 }

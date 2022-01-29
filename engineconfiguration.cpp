@@ -110,14 +110,30 @@ void EngineConfiguration::updateEngineProp (QString param, double value) {
     if(param.compare("engineRPM") == 0) {
         m_MaxEngineRPM = value;
         emit maxEngineRPMChanged();
-    } else if (param.compare("tyreDiameter") == 0) {
-        m_tyreDiameter = value;
-    } else if (param.compare("firstGear") == 0) {
-//        m_FirstGear = value;
     }
-    else if (param.compare("driveRatio") == 0) {
-            m_driveRatio = value;
-    }
+    else if (param.compare("driveRatio") == 0) m_driveRatio = value;
+    else if (param.compare("tyreRow") == 0) m_tyreDiameter = value;
+    else if (param.compare("fGear") == 0) m_gearRatios[0] = value;
+    else if (param.compare("sGear") == 0) m_gearRatios[1] = value;
+    else if (param.compare("tGear") == 0) m_gearRatios[2] = value;
+    else if (param.compare("fourGear") == 0) m_gearRatios[3] = value;
+    else if (param.compare("fiveGear") == 0) m_gearRatios[4] = value;
+    else if (param.compare("sixGear") == 0) m_gearRatios[5] = value;
+
+}
+
+double EngineConfiguration::getEngineProperty(QString param)
+{
+    if (param.compare("engineRPM") == 0) return m_MaxEngineRPM;
+    else if (param.compare("driveRatio") == 0) return m_driveRatio;
+    else if (param.compare("tyreRow") == 0) return m_tyreDiameter;
+    else if (param.compare("fGear") == 0) return m_gearRatios.at(0);
+    else if (param.compare("sGear") == 0) return m_gearRatios.at(1);
+    else if (param.compare("tGear") == 0) return m_gearRatios.at(2);
+    else if (param.compare("fourGear") == 0) return m_gearRatios.at(3);
+    else if (param.compare("fiveGear") == 0) return m_gearRatios.at(4);
+    else if (param.compare("sixGear") == 0) return m_gearRatios.at(5);
+
 }
 
 void EngineConfiguration::calculateSpeed()
@@ -129,7 +145,7 @@ void EngineConfiguration::calculateSpeed()
     }
 
     if(isBraking == true && isAccelerating == false) {
-         m_engineRPM = m_engineRPM - 250;
+         m_engineRPM = m_engineRPM - 150;
     }
 
     if (isAccelerating == true && m_engineRPM > 3000){ //upshifting the gear
