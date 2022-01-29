@@ -18,6 +18,7 @@ Item {
         height: 500
         width: 1000
         color: "black"
+
         Row {
             //Qt Quick
             id: dashboardRow
@@ -66,6 +67,15 @@ Item {
                 width: height
                 direction: Qt.RightArrow
             }
+        }
+
+        Text {
+            id: tip
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            color: "white"
+            font.pixelSize: 18
+            text: qsTr("Use arrows on keyboard: up - acceleration, down - brakes, left/right - blinkers")
         }
 
         Keys.onUpPressed: {
