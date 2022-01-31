@@ -3,6 +3,7 @@
 #include <QQmlContext>
 
 #include "engineconfiguration.h"
+#include "qmlcppbridge.h"
 
 int main(int argc, char *argv[])
 {
