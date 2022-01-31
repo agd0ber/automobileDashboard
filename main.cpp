@@ -4,16 +4,6 @@
 
 #include "engineconfiguration.h"
 
-class QmlCppBridge : public QObject
-{
-    Q_OBJECT
-public:
-
-    Q_INVOKABLE static void printHello() {
-        qDebug() << "Hello, QML!";
-    }
-};
-
 int main(int argc, char *argv[])
 {
 //    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));  //строка включает виртуальную клавиатуру

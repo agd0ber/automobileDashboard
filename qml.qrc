@@ -7,7 +7,6 @@
         <file>RpmMeterStyle.qml</file>
         <file>DashboardSimulator.qml</file>
         <file>VehicleConfiguration.qml</file>
-        <file>SettingField.qml</file>
         <file>VehicleConfModel.qml</file>
     </qresource>
 </RCC>
